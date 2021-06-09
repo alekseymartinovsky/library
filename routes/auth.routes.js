@@ -11,8 +11,7 @@ router.post(
     './register', 
     [
         check('email', 'Некорректный email'.isEmail(),
-        check('password', 'Минимальная длинна 6')
-            .isLength({min: 6})
+        check('password', 'Минимальная длина 6').isLength({min: 6})
         )
     ],
     async(req, res) => {
@@ -67,7 +66,7 @@ router.post(
         const user = await User.findOne({email});
 
         if(!user){
-            return res.status(400).json({message: 'Данныее введены нееврно'});
+            return res.status(400).json({message: 'Данныее введены невeрно'});
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
